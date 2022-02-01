@@ -17,13 +17,13 @@ gunicorn==20.0.4
 itsdangerous==1.1.0
 Jinja2==2.11.3
 # libcomps==0.1.15.post1
-Mako==1.1.6.custom
+Mako==1.1.6
 MarkupSafe==1.1.1
 Paste==3.5.0
 ply==3.11
 psycopg2==2.8.6
 pycparser==2.20
-pycrypto==2.6.1
+# pycrypto==2.6.1 pycryptodome
 PyJWT==2.1.0
 pyOpenSSL==20.0.1
 python-dateutil==2.8.1

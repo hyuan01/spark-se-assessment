@@ -38,8 +38,9 @@ migrate = Migrate(app, db)
 def root_site():
     return "<p>It works!</p>"
 
-from project.server.auth.views import auth_blueprint
+from project.server.auth.views import auth_blueprint, index_blueprint
 app.register_blueprint(auth_blueprint)
+app.register_blueprint(index_blueprint)
 
 @app.cli.command()
 @click.option('--coverage/--no-coverage', default=False,

@@ -27,12 +27,20 @@ class User(db.Model):
         Generates the Auth Token
         :return: string
         """
+        print("THIS IS THE KEY ", str(app.config.get('SECRET_KEY')))
         try:
             payload = {
                 'exp': datetime.datetime.utcnow() + datetime.timedelta(days=0, seconds=5),
                 'iat': datetime.datetime.utcnow(),
                 'sub': user_id
             }
+            print("completed payload")
+            print(str(payload))
+            print(str(jwt.encode(
+                payload,
+                app.config.get('SECRET_KEY'),
+                algorithm='HS256'
+            )))
             return jwt.encode(
                 payload,
                 app.config.get('SECRET_KEY'),
@@ -48,8 +56,11 @@ class User(db.Model):
         :param auth_token:
         :return: integer|string
         """
+        print("INSIDE DECODE FUNCTION")
         try:
             payload = jwt.decode(auth_token, app.config.get('SECRET_KEY'))
+            print("THIS IS PAYLOAD ", str(payload))
+            print("THIS IS PAYLOAD SUB ", str(payload['sub']))
             return payload['sub']
         except jwt.ExpiredSignatureError:
             return 'Signature expired. Please log in again.'
